@@ -148,7 +148,6 @@ def getstud(request):
     html2_str = request.session.get('html2', '')
     # render the HTML content as a template
     html2_template = render(request, 'try.html', {'content': html2_str})
-    
     # return the rendered HTML template to the client
     return html2_template
 
@@ -426,7 +425,7 @@ def hire_event(request,USN,event_id):
     response = requests.request("POST",  url, headers=headers, data=payload)
     return redirect(f'/applied_students_events/{event_id}')
 
-def archivedeve(request):
-    response = requests.get(f'https://springbootapi-production-c1e0.up.railway.app/event-applied-students/')
-    studs = response.json()
-    return render(request,"events/applied_event.html",{"studs":studs,"pid":event_id})
+# def archivedeve(request):
+#     response = requests.get(f'https://springbootapi-production-c1e0.up.railway.app/event-applied-students/')
+#     studs = response.json()
+#     return render(request,"events/applied_event.html",{"studs":studs,"pid":event_id})
