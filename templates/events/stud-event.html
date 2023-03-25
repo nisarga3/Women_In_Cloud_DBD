@@ -1,0 +1,165 @@
+<!-- templates/stud_index.html -->
+
+{% extends "_base.html" %}
+{% load compress %}
+{% load static %}
+{% block css %}
+    <title>Women in Cloud</title>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    {% endcompress %}
+{% endblock css %}
+{% block nav %}
+<ul class="flex flex-col p-4 mt-4  rounded-lg bg-gray-50 md:flex-row md:space-x-20 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+    <li>
+      <a href="/admin_index" class="block py-2 pl-3 pr-4 text blue bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-300"
+ aria-current="page">Home</a>
+    </li>
+    <li>
+      <a href="/projects" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Projects</a>
+    </li>
+    <li>
+      <a href="/internships" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Internships</a>
+    </li>
+  
+      <li>
+        <a href="/events" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a>
+
+      </li>
+      <li>
+      <a href="/dashboard" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Dashboard</a>
+    </li>
+    <li>
+      <div class="gradient-button">
+        <a
+          id="modal_trigger"
+          onclick="location.href='{% url 'logout' %}'"
+          ><i class="fa fa-sign-in-alt"></i> Logout</a
+        >
+      </div>
+    </li>
+  </ul>
+{% endblock nav%}
+{% block content %}
+<section class="section courses" id="courses" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Latest Courses</h6>
+            <h2>Latest Courses</h2>
+          </div>
+        </div>
+      </div>
+      <ul class="event_filter">
+        <li>
+          <a class="is_active" href="#!" data-filter="*">Show All</a>
+        </li>
+        <li>
+          <a href="#!" data-filter=".upcoming">Upcoming</a>
+        </li>
+        <li>
+          <a href="/archivedeve" data-filter=".past">Past Events</a>
+        </li>
+      </ul>
+{% for e in events %}
+<script>
+    categorizeEvents();
+</script>
+  
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="{{e.poster}}" alt=""></a>
+              <span class="category" id="eventdate">{{e.start_date}}</span>
+              <script>
+                const isoDateString = "{{e.start_date}";
+                const dateStr = formatDate(isoDateString);
+                document.getElementById("event-date").textContent = dateStr;
+              </script>
+              <span class="price"><h6><em>{{e.type}}</em></h6></span>
+            </div>
+            <div class="down-content">
+              <span class="author">{{e.description}}</span></br>
+              <span class="author">Location: {{e.location}}</span>
+              <h4>{{e.name}}</h4>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+  </section>
+{% endblock content %}
+{% block js %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script>
+    function formatDate(isoDateString) {
+  const date = new Date(isoDateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+}
+    function categorizeEvents() {
+  var events = document.getElementsByClassName("col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress");
+  var now = new Date();
+  for (var i = 0; i < events.length; i++) {
+    var startDateStr = events[i].querySelector(".category").innerText;
+    var startDate = new Date(startDateStr);
+    if (startDate > now) {
+      events[i].classList.add("upcoming");
+    } else {
+      events[i].classList.add("past");
+    }
+  }
+}
+
+  function checkUSNFormat(usn) {
+  var usnPattern = /^1RV\d{2}[A-Z]{2}\d{3}$/;
+  return usnPattern.test(usn);
+}
+function apply(event) {
+  event.preventDefault();
+  var url = $(applyyy).attr('href');
+  console.log(url)
+  Swal.fire({
+    title: 'Please Enter your USN',
+    input: 'text',
+    inputAttributes: {
+      autocapitalize: 'off'
+    },
+    showCancelButton: true,
+    confirmButtonText: 'Apply',
+    showLoaderOnConfirm: true,
+    allowOutsideClick: () => !Swal.isLoading()
+  }).then((result) => {
+    if (result.isConfirmed) {
+      var inputValue = result.value;
+      if (inputValue && checkUSNFormat(inputValue)) {
+        url += "/"+ inputValue;
+        window.location.href = url;
+        console.log(url);
+        Swal.fire(
+          'Success',
+          'Applied Successfully',
+          'success'
+        )
+      } else {
+        Swal.fire(
+          'Error',
+          'Please enter a valid USN',
+          'error'
+        )
+      }
+    }
+  })
+}
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% endblock js%}

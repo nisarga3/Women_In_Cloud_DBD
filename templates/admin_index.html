@@ -1,0 +1,258 @@
+<!-- templates/stud_index.html -->
+
+{% extends "_base.html" %}
+{% load compress %}
+{% load static %}
+{% block css %}
+    <title>Women in Cloud</title>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    {% endcompress %}
+     <!-- Bootstrap core CSS -->
+  <style>
+
+    .services {
+      padding-top: 130px;
+      position: relative;
+    }
+    
+    .services  .section-heading p {
+      margin-top: 10px;
+      margin-left: 18%;
+      margin-right: 18%;
+    }
+    
+    .services .container-fluid {
+      padding-left: 65px;
+      padding-right: 65px;
+    }
+    
+    .services:after {
+      content: '';
+      background-image: url(../images/services-left-dec.png);
+      background-repeat: no-repeat;
+      position: absolute;
+      left: 0;
+      bottom: -300px;
+      width: 261px;
+      height: 368px;
+      z-index: 0;
+    }
+    
+    .services:before {
+      content: '';
+      background-image: url(../images/services-right-dec.png);
+      background-repeat: no-repeat;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1136px;
+      height: 244px;
+      z-index: 0;
+    }
+    
+    .services .section-heading {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    
+    .services .section-heading .line-dec {
+      margin: 0 auto;
+    }
+    
+    .service-item {
+      position: relative;
+      z-index: 1;
+      padding: 30px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+      background-color: #fff;
+      border-radius: 10px;
+      border-top-right-radius: 50px;
+      transition: all .3s;
+    }
+    
+    .service-item .icon {
+      margin-left: 0px;
+      margin-bottom: 30px;
+      background-repeat: no-repeat;
+      width: 50px;
+      height: 50px;
+      transition: all .3s;
+    }
+    
+    .service-item h4 {
+      transition: all .3s;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    
+    .service-item p {
+      transition: all .3s;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .service-item:hover h4,
+    .service-item:hover p,
+    .service-item:hover .text-button a {
+      color: #fff;
+    }
+    
+    .first-service .icon,
+    .second-service .icon {
+      background-image: url(../images/add1.png);
+      background-size: 55px;
+    }
+    
+    .first-service:hover .icon ,
+    .second-service:hover .icon{
+      background-image: url(../images/addhover1.png);
+      background-size: 55px;
+    }    
+    
+    .third-service .icon {
+      background-image: url("% static 'images/service-add-icon01.png' %");
+    }
+    
+    .third-service:hover .icon {
+      background-image: url("% static 'images/service-add--hover-icon01.png' %");
+    }
+    
+    .service-item:hover {
+      background-image: url("% static 'images/service-bg.jpg' %");
+      background-position: right top;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }</style>
+{% endblock css %}
+{% block nav %}
+<ul class="flex flex-col p-4 mt-4  rounded-lg bg-gray-50 md:flex-row md:space-x-20 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+  <li>
+    <a href="/admin_index" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-300" aria-current="page">Home</a>
+  </li>
+  <li>
+    <a href="/projects" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Projects</a>
+  </li>
+  <li>
+    <a href="/internships" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Internships</a>
+  </li>
+
+    <li>
+      <a href="/events" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a>
+    </li>
+    <li>
+    <a href="/dashboard" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Dashboard</a>
+  </li>
+  <li>
+    <div class="gradient-button">
+      <a
+        id="modal_trigger"
+        onclick="location.href='{% url 'logout' %}'"
+        ><i class="fa fa-sign-in-alt"></i> Logout</a
+      >
+    </div>
+  </li>
+</ul>
+{% endblock nav %}
+{% block content %}
+
+<div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div
+            class="section-heading wow fadeInDown"
+            data-wow-duration="1s"
+            data-wow-delay="0.5s"
+          >
+            <h4>Our <em>Works</em></h4>
+            <img src="{% static 'images/heading-line-dec.png' %}" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="service-item first-service">
+            <div class="icon"></div>
+            <h4>Add New Project</h4>
+            <p>Add new project and let students know about it</p>
+            <div class="text-button">
+              <a href="/addproj"
+                >Click to add <i class="fa fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="service-item first-service">
+            <div class="icon"></div>
+            <h4>Add New Internship</h4>
+            <p>Add new internship and let students know about it</p>
+            <div class="text-button">
+              <a href="/addintern"
+                >Click to add <i class="fa fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="service-item second-service">
+            <div class="icon"></div>
+            <h4>Add New Event</h4>
+            <p>Add new Event and let students know about it</p>
+            <div class="text-button">
+              <a href="/addevents"
+                >Click to add <i class="fa fa-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- <div class="col-lg-3">
+          <div class="service-item fourth-service">
+            <div class="icon"></div>
+            <h4>24/7 Help &amp; Support</h4>
+            <p>
+              Lorem ipsum dolor consectetur adipiscing elit sedder
+              williamsburg photo booth quinoa and fashion axe.
+            </p>
+            <div class="text-button">
+              <a href="#">Apply Now <i class="fa fa-arrow-right"></i></a>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>       
+         
+{% endblock content %}
+<!-- {% block js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  function loadPage(url) {
+    $.ajax({
+      url: url,
+      type: 'get',
+      success: function(data) {
+        $('#page-content').html(data);
+      },
+      error: function(xhr, status, error) {
+        console.error(error);
+      }
+    });
+  }
+      $('.nav-link').on('click', function(event) {
+  // Prevent the default behavior of the link
+  event.preventDefault();
+  
+  // Get the URL pattern for the clicked link
+  var url = $(this).attr('href');
+  
+  // Load the new page content using AJAX
+  loadPage(url);
+});
+</script>
+{% endblock js%} -->

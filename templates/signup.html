@@ -1,0 +1,342 @@
+<!-- templates/signin.html -->
+
+{% extends "_base.html" %}
+{% load compress %}
+{% load static %}
+{% block messages %}{% endblock messages %}
+{% block css %}
+    <title>Women in Cloud | Signin</title>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    {% endcompress %}
+    <link rel="stylesheet" href="../static/css/addproj.css" class="rel" />
+    <script type="text/javascript" src="../static/js/signin.js"></script>
+{% endblock css %}
+{% block nav %}
+<li>
+    <a href="/home"><i class="fa fa-home" aria-hidden="true"></i>
+      Home</a>
+  </li>
+{% endblock nav%}
+{% block content %}
+{% if msg %}
+<script>
+  alert("{{msg}}");
+</script>
+{% endif %}
+<!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<br/><br/><br/><br/>
+<div class="form-panel three" style="width:60%; margin-left:21%;margin-right:40%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+<form action="/postsignup/" method="post">
+  {% csrf_token %}
+  <div class="space-y-12">
+    
+    <div class="border-b border-gray-900/10 pb-12">
+      <h2 class="text-base font-semibold leading-7 text-blue-600" style="font-size: larger;">Women In Cloud Student Registration
+      </h2>
+      <p class="mt-1 text-sm leading-6 text-gray-600">Please Provide Correct Details</p>
+      <div class="border-b border-gray-900/10 pb-12">
+        <!-- <h2 class="text-base font-semibold leading-7 text-blue-600">Personal Information</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p> -->
+  
+        <div class="mt-10 grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label for="first-name" class="block text-sm font-medium leading-6 text-blue-600">First name *</label>
+            <div class="mt-2">
+              <input type="text"
+              id="text"
+              name="Firstname"
+              required="required" autocomplete="given-name" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+            </div>
+          </div>
+  
+          <div class="sm:col-span-3">
+            <label for="last-name" class="block text-sm font-medium leading-6 text-blue-600">Last name *</label>
+            <div class="mt-2">
+              <input type="text"
+              id="text"
+              name="Lastname"
+              required="required" autocomplete="family-name" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+            </div>
+          </div>
+  
+          <div class="sm:col-span-4">
+            <label for="email" class="block text-sm font-medium leading-6 text-blue-600">Email address *</label>
+            <div class="mt-2">
+              <input type="email"
+              id="username"
+              name="email"
+              required="required" autocomplete="email" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+            </div>
+          </div>
+  
+          <div class="sm:col-span-4">
+            <label for="country" class="block text-sm font-medium leading-6 text-blue-600">Department *</label>
+            <div class="mt-2">
+              <select                       type="text"
+              id="text"
+              name="dept"
+              required="required" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-blue-600 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                <option>Information Science and Engineering</option>
+                <option>Computer Science and Engineering</option>
+                <option>Artificial Intelligence and Machine Learning</option>
+                <option>Aerospace Engineering</option>
+                <option>Electronics and Communication Engineering</option>
+                <option>Electrical and Electronics Engineering</option>
+                <option>Electronics and Instrumentation Engineering</option>
+                <option>Master of Computer Applications</option>
+
+
+              </select>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <label for="email" class="block text-sm font-medium leading-6 text-blue-600">USN *</label>
+            <div class="mt-2">
+              <input type="text"
+              id="USN"
+              name="usn"
+              required="required"
+              pattern="1RV[0-9]{2}[A-Z]{2}[0-9]{3}"
+              title="USN must be of format eg: 1RV20IS026"
+              minlength="10" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+            </div>
+            <div class="sm:col-span-3">
+              <label for="last-name" class="block text-sm font-medium leading-6 text-blue-600">Batch*</label>
+              <div class="mt-2">
+                <input type="text"
+                id="text"
+                name="batch"
+                required="required" autocomplete="family-name" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+              </div>
+            </div>
+          </div>
+          <div class="sm:col-span-4">
+            <label for="email" class="block text-sm font-medium leading-6 text-blue-600">Phone Number *</label>
+            <div class="mt-2">
+              <input type="tel"
+              id="text"
+              name="phno"
+              required="required"
+              minlength="10" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+            </div>
+          </div>
+
+          <div class="sm:col-span-4">
+            <label for="password" class="block text-sm font-medium leading-6 text-blue-600">Password *</label>
+            <div class="mt-2">
+              <input
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                type="password"
+                id="password"
+                name="pass"
+                required="required"
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                title="Password have a minimum of 8 characters and contain at least one upper case letter, one lower case letter, one number, and one special character"
+              />
+            </div>
+          </div>
+          <div class="sm:col-span-4">
+            <label for="cpassword" class="block text-sm font-medium leading-6 text-blue-600">Password Again *</label>
+            <div class="mt-2">
+              <input
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              type="password"
+              id="cpassword"
+              name="cpassword"
+              required="required"
+                
+              />
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-4">
+          <label for="username" class="block text-sm font-medium leading-6 text-blue-600">Username</label>
+          <div class="mt-2">
+            <div class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+              <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm">wic/</span>
+              <input type="text" name="username" id="username" autocomplete="username" class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-blue-600 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="janesmith">
+            </div>
+          </div>
+        </div> -->
+
+      
+        <div class="col-span-full">
+          <label for="photo" class="block text-sm font-medium leading-6 text-blue-600">Photo</label>
+          <div class="mt-2 flex items-center gap-x-3">
+            <svg class="h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+            </svg>
+            <button type="button" class="rounded-md bg-white py-1.5 px-2.5 text-sm font-semibold text-blue-600 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
+          </div>
+        </div>
+
+        <div class="col-span-full">
+          <label for="pdf_file" class="block text-sm font-medium leading-6 text-blue-600">Resume</label>
+          <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+            <div class="text-center">
+              <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+              </svg>
+              <div class="mt-4 flex text-sm leading-6 text-gray-600">
+                <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                  <span>Google drive link of Resume</span>
+                  <div class="col-span-full">
+                    <label for="email" class="block text-sm font-medium leading-6 text-blue-600">Make sure the access is open for all</label>
+                    <div class="mt-2">
+                      <input type="text"
+                      id="text"
+                      name="resume"
+                      minlength="10" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                  </div>
+        
+                </label>
+              </div>
+              <p class="text-xs leading-5 text-gray-600">Valid link</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <button type="submit" class="rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Register</button>
+  </div>
+</form>
+</div>
+
+        <!-- <div class="form-panel two">
+            <form action="/postsignup/" method="post">
+                {% csrf_token %}
+          <div class="form-header">
+            <h1>Register Account</h1>
+          </div>
+          <div class="form-content">
+            <form>
+                <div class="form-group">
+                    <label for="password">First Name</label
+                    ><input
+                      type="text"
+                      id="text"
+                      name="Firstname"
+                      required="required"
+                     
+                      title="Name must have only alphabets"
+
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Last Name</label
+                    ><input
+                      type="text"
+                      id="text"
+                      name="Lastname"
+                      required="required"
+                      pattern="^[a-zA-Z][a-zA-Z]{1,10}$"
+                      title="Name must have only alphabets"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Batch</label
+                    ><input
+                      type="year"
+                      id="text"
+                      name="batch"
+                      required="required"
+                      maxlength="4"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">USN</label
+                    ><input
+                      type="text"
+                      id="USN"
+                      name="usn"
+                      required="required"
+                      pattern="1RV[0-9]{2}[A-Z]{2}[0-9]{3}"
+                      title="USN must be of format eg: 1RV20IS026"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="password">Department</label
+                    ><input
+                      type="text"
+                      id="text"
+                      name="dept"
+                      required="required"
+                    />
+                  </div>
+              <div class="form-group">
+                <label for="username">Email ID</label
+                ><input
+                  type="email"
+                  id="username"
+                  name="email"
+                  required="required"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Phone number</label
+                ><input
+                  type="tel"
+                  id="text"
+                  name="phno"
+                  required="required"
+                  minlength="10"
+                  pattern="[+]?[0-9]{10,13}"
+                />
+              </div>
+              
+            <label class="block mb-2 text-sm font-medium text-blue-600 dark:text-white" for="user_avatar">Upload file</label>
+            <input class="block w-full text-sm text-blue-600 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
+            <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">A profile picture is useful to confirm your are logged into your account</div>
+
+              <div class="form-group">
+                <label for="password">Password</label
+                ><input
+                  type="password"
+                  id="password"
+                  name="pass"
+                  required="required"
+                  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+                  title="Password have a minimum of 8 characters and contain at least one upper case letter, one lower case letter, one number, and one special character"
+                />
+              </div>
+              <div class="form-group">
+                <label for="cpassword">Confirm Password</label
+                ><input
+                  type="password"
+                  id="cpassword"
+                  name="cpassword"
+                  required="required"
+                />
+              </div>
+              
+              <div class="form-group">
+                <button type="submit">Register</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        </div>
+      </form>
+    </div> -->
+{% endblock content %}

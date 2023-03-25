@@ -1,0 +1,202 @@
+<!-- templates/signin.html -->
+
+{% extends "_base.html" %}
+{% load compress %}
+{% load static %}
+
+{% block css %}
+    <title>Women in Cloud | Signin</title>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    {% endcompress %}
+    <link rel="stylesheet" href="../static/css/signup.css" class="rel" />
+    <script type="text/javascript" src="../static/js/signin.js"></script>
+{% endblock css %}
+{% block nav %}
+<li class="scroll-to-section">
+    <a href="/home"><i class="fa fa-home" aria-hidden="true"></i>
+      Home</a>
+  </li>
+{% endblock nav%}
+{% block content %}
+
+    <!-- Form-->
+    <div class="form">
+      <form action="/postsignin/" method="post">
+        {% csrf_token %}
+        <div class="form-toggle"></div>
+        <div class="form-panel one">
+          <div class="form-header">
+            <h1>Account Login</h1>
+          </div>
+          <div class="form-content">
+            <form>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="username"
+                  name="email"
+                  required="required"
+                />
+              </div>
+              <div class="form-group">
+                <label for="pass">Password</label
+                ><input
+                  type="password"
+                  id="password"
+                  name="pass"
+                  required="required"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-remember"
+                  ><input type="checkbox" />Remember Me</label
+                ><a class="form-recovery" href="#">Forgot Password?</a>
+              </div>
+              <div class="form-group">
+                <a
+                  class="register"
+                  href="/signup
+                "
+                  >Not Registered?</a
+                >
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Log In" />
+                <!-- <button type="submit" value="Sign In">Log In</button> -->
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Form for Register starts -->
+        <!-- <div class="form-panel two">
+          <form action="/postsignup/" method="post">
+              {% csrf_token %}
+        <div class="form-header">
+          <h1>Register Account</h1>
+        </div>
+        <div class="form-content">
+          <form>
+              <div class="form-group">
+                  <label for="password">First Name</label
+                  ><input
+                    type="text"
+                    id="text"
+                    name="Firstname"
+                    required="required"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Last Name</label
+                  ><input
+                    type="text"
+                    id="text"
+                    name="Lastname"
+                    required="required"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Batch</label
+                  ><input
+                    type="text"
+                    id="text"
+                    name="batch"
+                    required="required"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">USN</label
+                  ><input
+                    type="text"
+                    id="text"
+                    name="usn"
+                    required="required"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Department</label
+                  ><input
+                    type="text"
+                    id="text"
+                    name="dept"
+                    required="required"
+                  />
+                </div>
+            <div class="form-group">
+              <label for="username">Email ID</label
+              ><input
+                type="email"
+                id="username"
+                name="email"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Phone number</label
+              ><input
+                type="text"
+                id="text"
+                name="phno"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label
+              ><input
+                type="password"
+                id="password"
+                name="pass"
+                required="required"
+              />
+            </div>
+            <div class="form-group">
+              <label for="cpassword">Confirm Password</label
+              ><input
+                type="password"
+                id="cpassword"
+                name="cpassword"
+                required="required"
+              />
+            </div>
+            
+            <div class="form-group">
+              <button type="submit">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+    </form>
+  </div> -->
+        <!-- Form for Register ends -->
+      </form>
+    </div>
+
+{% endblock content %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% if msg %}
+
+<script>
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: 'Account created for Sucessfully!'
+})
+</script>
+{% endif %}
+{% endblock js %}
