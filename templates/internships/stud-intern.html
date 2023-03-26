@@ -34,7 +34,7 @@
         <div class="flex items-center md:order-2">
             <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
               <span class="sr-only">Open user menu</span>
-              <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo">
+              <img class="w-8 h-8 rounded-full" src="{% static 'images/user-solid.jpg' %}" alt="{{stud.student_first_name}} {{student_last_name}}">
             </button>
             <!-- Dropdown menu -->
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
@@ -185,19 +185,19 @@ width: 80%; ">
                     {{i.company_name}}
                 </th>
                 <td class="px-6 py-4">
-                    {{i.description}}
+                    {{i.role_description}}
                 </td>
                 <td class="px-6 py-4">
                     {{i.requirements}}
                 </td>
                 <td class="px-6 py-4">
-                    {{ i.start_date|slice:'0:10' }}-{{ i.end_date|slice:'0:10' }}
+                    {{ i.start_date|slice:'0:10' }} - {{ i.end_date|slice:'0:10' }}
                 </td>
                 <td class="px-6 py-4">
                     {{i.opening}}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="/applyproj/{{i.project_id}}" onclick="apply(event)" id="applyyy" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Apply</a>
+                    <a href="/applyintern/{{i.internship_id}}" onclick="apply(event)" id="applyyy" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Apply</a>
                 </td>
             </tr>
             {% endfor %}
@@ -218,41 +218,59 @@ width: 80%; ">
   var usnPattern = /^1RV\d{2}[A-Z]{2}\d{3}$/;
   return usnPattern.test(usn);
 }
+
 function apply(event) {
   event.preventDefault();
   var url = $(applyyy).attr('href');
-  console.log(url)
+  console.log(url);
   Swal.fire({
-    title: 'Please Enter your USN',
-    input: 'text',
-    inputAttributes: {
-      autocapitalize: 'off'
-    },
-    showCancelButton: true,
-    confirmButtonText: 'Apply',
-    showLoaderOnConfirm: true,
-    allowOutsideClick: () => !Swal.isLoading()
-  }).then((result) => {
+  title: "Please Enter your USN",
+  text: "To confirm, please enter your USN in a valid format",
+  input: "text",
+  inputAttributes: {
+    autocapitalize: "on",
+  },
+  showCancelButton: true,
+  confirmButtonText: "Apply",
+  inputValidator: (value) => {
+    if (!value) {
+      return "Please enter a valid USN";
+    } else if (!checkUSNFormat(value)) {
+      return "Invalid USN format";
+    }
+  },
+  preConfirm: (login) => {
+    return fetch(`${url}/${login}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data.status === "success") {
+          return data.message;
+        } else {
+          throw new Error(data.message);
+        }
+      });
+  },
+  showLoaderOnConfirm: true,
+  allowOutsideClick: () => !Swal.isLoading(),
+})
+  .then((result) => {
     if (result.isConfirmed) {
       var inputValue = result.value;
-      if (inputValue && checkUSNFormat(inputValue)) {
-        url += "/"+ inputValue;
-        window.location.href = url;
-        console.log(url);
-        Swal.fire(
-          'Success',
-          'Applied Successfully',
-          'success'
-        )
-      } else {
-        Swal.fire(
-          'Error',
-          'Please enter a valid USN',
-          'error'
-        )
-      }
+      url += "/" + inputValue;
+      window.location.href = url;
+      console.log(url);
+      Swal.fire("Success", "Applied Successfully", "success");
     }
   })
+  .catch((error) => {
+    Swal.showValidationMessage(error);
+    return false;
+  });
 }
 
 

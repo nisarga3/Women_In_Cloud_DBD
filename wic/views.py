@@ -342,7 +342,7 @@ def apply_intern(request,internship_id,USN):
     response = requests.request("POST",  url, headers=headers, data=payload)
     print(response)
     if(str(response)=="<Response [500]>"):
-        return JsonResponse({"message":"Sorry, You have a ongoing Project and we do not allow multiple applications. Feel free to email us."})
+        return JsonResponse({"message":"Sorry, You have a ongoing Internship and we do not allow multiple applications. Feel free to email us."})
     return redirect('/apply_internships')
 
 
