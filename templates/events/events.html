@@ -40,8 +40,23 @@
   </ul>
 {% endblock nav%}
 {% block content %}
-<br/><br/><br/><br/>
-<div class="table-containerr" style="margin: 80px auto;;
+ <div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <div
+            class="section-heading wow fadeInDown"
+            data-wow-duration="1s"
+            data-wow-delay="0.5s"
+          >
+            <h4>E<em>vents</em></h4>
+            <img src="{% static 'images/heading-line-dec.png' %}" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+<div class="table-containerr" style="margin: 80px auto; margin-top: 0px;
 width: 80%; ">
     <table class="table" style=" width: 100%;border-collapse: collapse;">
       <!-- Flowbite table code goes here -->
@@ -101,12 +116,7 @@ width: 80%; ">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                    </div>
-                </th>
+ 
                 <th scope="col" class="px-6 py-3">
                     Event name
                 </th>
@@ -117,33 +127,28 @@ width: 80%; ">
                     Start Date/End Date
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Number of Openings
+                    Type of Event
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Applied students
+                    Registered students
                 </th>
             </tr>
         </thead>
         <tbody>
             {% for e in events %}
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="w-4 p-4">
-                    <div class="flex items-center">
-                        <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
-                    </div>
-                </td>
+ 
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{e.event_name}}
+                    {{e.name}}
                 </th>
                 <td class="px-6 py-4">
-                    {{e.requirements}}
+                    {{e.description}}
                 </td>
                 <td class="px-6 py-4">
-                    {{e.start_date}}-{{e.end_date}}
+                    {{ e.start_date|slice:'0:10' }} - {{e.end_date|slice:'0:10'}}
                 </td>
                 <td class="px-6 py-4">
-                    {{e.opening}}
+                    {{e.type}}
                 </td>
                 <td class="px-6 py-4">
                     <a href="/applied_students_events/{{e.event_id}}" class="font-large text-blue-600 dark:text-blue-500 hover:underline">

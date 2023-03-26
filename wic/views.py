@@ -32,7 +32,20 @@ def signin(request):
         if email == "wicadmin@rvce.edu.in":
             return render(request,"admin_index.html",{"e":email})
         else:
-            return render(request,"stud_index.html",{"e":email})
+            # hiredstuff
+            response = requests.get(f'https://springbootapi-production-c1e0.up.railway.app/usn/{email}')
+            student_usn = response.json()
+            print(student_usn['USN'])
+            url='https://springbootapi-production-c1e0.up.railway.app/student'
+            payload = json.dumps({
+                    "USN": student_usn['USN'],
+                })
+            headers = {
+                    'Content-Type': 'application/json'
+                }
+            student = requests.request("POST",  url, headers=headers, data=payload)
+            print(student.json())
+            return render(request,"stud_index.html",{"stud":student.json()})
     else:
         return render(request,'signin.html')
 
@@ -60,6 +73,19 @@ def postsignin(request):
         stud=getusn_stud(email)
         # print(response)
         request.session['email'] = email
+        response = requests.get(f'https://springbootapi-production-c1e0.up.railway.app/usn/{email}')
+        student_usn = response.json()
+        print(student_usn['USN'])
+        url='https://springbootapi-production-c1e0.up.railway.app/student'
+        payload = json.dumps({
+                    "USN": student_usn['USN'],
+                })
+        headers = {
+                'Content-Type': 'application/json'
+            }
+        student = requests.request("POST",  url, headers=headers, data=payload)
+        print(student.json())
+        html1= render(request,"stud_index.html",{"stud":student.json()})
         html2=render(request,"studetails.html",{"stud":stud})
          # save html2 to the session
         request.session['html2'] = html2.content.decode('utf-8')
@@ -152,7 +178,7 @@ def getstud(request):
     return html2_template
 
 def dashboard(request):
-    return render(request,'dashboard.html')
+    return render(request,'powerbi.html')
 
 def powerbi(request):
     return render(request,'powerbi.html')
@@ -411,21 +437,30 @@ def apply_event(request,event_id,USN):
 def applied_students_event(request,event_id):
     response = requests.get(f'https://springbootapi-production-c1e0.up.railway.app/event-applied-students/{event_id}/')
     studs = response.json()
-    return render(request,"events/applied_event.html",{"studs":studs,"pid":event_id})
+    return render(request,"events/applied_event.html",{"studs":studs,"eid":event_id})
 
-def hire_event(request,USN,event_id):
-    url='https://springbootapi-production-c1e0.up.railway.app/hire-event'
-    payload = json.dumps({
-            "USN": USN,
-            "event_id":event_id,
-        })
-    headers = {
-            'Content-Type': 'application/json'
-        }
-    response = requests.request("POST",  url, headers=headers, data=payload)
-    return redirect(f'/applied_students_events/{event_id}')
+def archivedeve(request):
+    response = requests.get('https://springbootapi-production-c1e0.up.railway.app/events-archived')
+    events = response.json()
+    print(events)
+    return render(request,"events/stud-event.html",{"events":events})
 
-# def archivedeve(request):
-#     response = requests.get(f'https://springbootapi-production-c1e0.up.railway.app/event-applied-students/')
-#     studs = response.json()
-#     return render(request,"events/applied_event.html",{"studs":studs,"pid":event_id})
+
+# # --DOWNLOAD REPORTS
+# def export_csv(request):
+#     response= HttpResponse(content_type='text/csv')
+
+#     response['Content-Disposition'] = 'attachment; filename=Internships' + str(datetime.datetime.now())+ '.csv'
+#     writer = csv.writer(response)
+#     writer.writerow(['COMPANY NAME', 'REQUIREMENTS', 'START DATE/END DATE', 'NUMBER OF OPENINGS'])
+
+def get_company_logo(company_name):
+    print(company_name)
+    url = f"https://logo.clearbit.com/{company_name}.com"
+    response = requests.get(url)
+    if response.status_code == 200:
+        # If the API returns a successful response, return the logo URL
+        return url
+    else:
+        # If the API returns an error response, return None
+        return None

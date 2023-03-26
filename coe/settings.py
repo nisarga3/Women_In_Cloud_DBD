@@ -149,6 +149,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
-STATIC_ROOT=os.path.join(BASE_DIR,"static")
+STATIC_ROOT=os.path.join(BASE_DIR,"staticfiles/")
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'static/')]
 STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app','https://*.127.0.0.1']

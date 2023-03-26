@@ -47,7 +47,8 @@ urlpatterns = [
     path("addevents/",views.addeve,name="addevents"),
     path("addevent/",views.addevent,name="addevent"),
     # ---- events student view----  
-    path("hire_event/<int:event_id>/<str:USN>/",views.hire_event,name="hire_event"),  #the stud view events
     path("apply_events/",views.stud_view_event,name="stud_view_event"),  #the stud view events 
     path("applyevent/<int:event_id>/<str:USN>/",views.apply_event,name="apply_event"),  #the stud view events 
+    path("archivedeve/",views.archivedeve,name="archivedeve"),  #the stud view events 
+
 ]

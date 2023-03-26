@@ -3,7 +3,7 @@
 {% extends "_base.html" %}
 {% load compress %}
 {% load static %}
-
+{% block msg %}{% endblock msg %}
 {% block css %}
     <title>Women in Cloud | Signin</title>
     {% compress css %}
@@ -178,8 +178,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{% if msg %}
 
+{% if msg %}
 <script>
 const Toast = Swal.mixin({
   toast: true,
@@ -199,4 +199,5 @@ Toast.fire({
 })
 </script>
 {% endif %}
+
 {% endblock js %}

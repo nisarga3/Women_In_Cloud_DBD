@@ -3,7 +3,6 @@
 {% extends "_base.html" %}
 {% load compress %}
 {% load static %}
-{% block messages %}{% endblock messages %}
 {% block css %}
     <title>Women in Cloud | Signin</title>
     {% compress css %}
@@ -19,9 +18,32 @@
   </li>
 {% endblock nav%}
 {% block content %}
-{% if msg %}
+<!-- {% if msg %}
 <script>
   alert("{{msg}}");
+</script>
+{% endif %} -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% if msg %}
+<script>
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'error',
+  title: 'Could not create account right now, please try again'
+})
 </script>
 {% endif %}
 <!--

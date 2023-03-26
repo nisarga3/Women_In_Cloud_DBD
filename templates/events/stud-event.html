@@ -12,31 +12,60 @@
 {% block nav %}
 <ul class="flex flex-col p-4 mt-4  rounded-lg bg-gray-50 md:flex-row md:space-x-20 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
     <li>
-      <a href="/admin_index" class="block py-2 pl-3 pr-4 text blue bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-300"
- aria-current="page">Home</a>
+      <a href="/stud_index" class="block py-2 pl-3 pr-4 text blue bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-300"
+   aria-current="page">Home</a>
     </li>
     <li>
-      <a href="/projects" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Projects</a>
+      <a href="/apply_projects" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Projects</a>
     </li>
     <li>
-      <a href="/internships" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Internships</a>
+      <a href="/apply_internships" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Internships</a>
     </li>
   
       <li>
-        <a href="/events" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a>
-
+        <a href="/apply_events" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a>
+  
       </li>
-      <li>
-      <a href="/dashboard" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Dashboard</a>
-    </li>
-    <li>
-      <div class="gradient-button">
-        <a
-          id="modal_trigger"
-          onclick="location.href='{% url 'logout' %}'"
-          ><i class="fa fa-sign-in-alt"></i> Logout</a
-        >
-      </div>
+  
+    <li class="scroll-to-section">
+      <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+        <div class="container flex flex-wrap items-center justify-between mx-auto">
+  
+          <div class="flex items-center md:order-2">
+              <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                <span class="sr-only">Open user menu</span>
+                <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo">
+              </button>
+              <!-- Dropdown menu -->
+              <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+                <div class="px-4 py-3">
+                  <span class="block text-sm text-gray-900 dark:text-white">name</span>
+                  <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{{e}}</span>
+                </div>
+                <ul class="py-2" aria-labelledby="user-menu-button">
+                  <li style="margin-left: 22%;">
+                    <a href="/getstud" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">View Profile</a>
+                  </li>
+                  <li style="margin-left: 25%;">
+                    <div class="gradient-button">
+                      <a
+                        id="modal_trigger"
+                        onclick="location.href='{% url 'logout' %}'"
+                        ><i class="fa fa-sign-in-alt"></i> Logout</a
+                      >
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+            </button>
+          </div>
+          
+        </div>
+        </div>
+      </nav>
     </li>
   </ul>
 {% endblock nav%}
@@ -46,16 +75,12 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <div class="section-heading">
-            <h6>Latest Courses</h6>
-            <h2>Latest Courses</h2>
+            <!-- <h6>Events</h6> -->
+            <h2>Events</h2>
           </div>
         </div>
       </div>
       <ul class="event_filter">
-        <li>
-          <a class="is_active" href="#!" data-filter="*">Show All</a>
-        </li>
-        <li>
           <a href="#!" data-filter=".upcoming">Upcoming</a>
         </li>
         <li>
@@ -71,17 +96,12 @@
           <div class="events_item">
             <div class="thumb">
               <a href="#"><img src="{{e.poster}}" alt=""></a>
-              <span class="category" id="eventdate">{{e.start_date}}</span>
-              <script>
-                const isoDateString = "{{e.start_date}";
-                const dateStr = formatDate(isoDateString);
-                document.getElementById("event-date").textContent = dateStr;
-              </script>
+              <span class="category" id="eventdate">{{ e.start_date|slice:'0:10' }}</span>
               <span class="price"><h6><em>{{e.type}}</em></h6></span>
             </div>
             <div class="down-content">
               <span class="author">{{e.description}}</span></br>
-              <span class="author">Location: {{e.location}}</span>
+              <span class="author">{{e.location}}</span>
               <h4>{{e.name}}</h4>
             </div>
           </div>
@@ -96,27 +116,7 @@
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/isotope.min.js' %}"></script>
 <script>
-    function formatDate(isoDateString) {
-  const date = new Date(isoDateString);
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-}
-    function categorizeEvents() {
-  var events = document.getElementsByClassName("col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 wordpress");
-  var now = new Date();
-  for (var i = 0; i < events.length; i++) {
-    var startDateStr = events[i].querySelector(".category").innerText;
-    var startDate = new Date(startDateStr);
-    if (startDate > now) {
-      events[i].classList.add("upcoming");
-    } else {
-      events[i].classList.add("past");
-    }
-  }
-}
-
+  
   function checkUSNFormat(usn) {
   var usnPattern = /^1RV\d{2}[A-Z]{2}\d{3}$/;
   return usnPattern.test(usn);
