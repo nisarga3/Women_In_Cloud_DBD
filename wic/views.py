@@ -464,3 +464,33 @@ def get_company_logo(company_name):
     else:
         # If the API returns an error response, return None
         return None
+
+def fund(request):
+    return render(request,'add_fund.html')
+
+def add_fund(request):
+    url="https://springbootapi-production-c1e0.up.railway.app/add-fund"
+    orgname=request.POST.get('orgname')
+    amount=request.POST.get('amount')
+    date=request.POST.get('date')
+    fp=request.POST.get('fp')
+    fi=request.POST.get('fi')
+    fe=request.POST.get('fe')
+
+    try:
+        payload = json.dumps({
+            "organization_name": orgname,
+            "amount": amount,
+            "date": date,
+            "funded_projects": fp,
+            "funded_internships":fi,
+            "funded_events":fe,
+        })
+        headers = {
+            'Content-Type': 'application/json'
+        }
+        response = requests.request("POST", url, headers=headers, data=payload)
+    except:
+        message="Unable to add fund, Try Again!"
+        return render(request,"admin_index.html",{"msg":message})    
+    return render(request,"admin_index.html")

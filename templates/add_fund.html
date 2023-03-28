@@ -1,0 +1,121 @@
+<!-- templates/signin.html -->
+
+{% extends "_base.html" %}
+{% load compress %}
+{% load static %}
+{% block messages %}{% endblock messages %}
+{% block css %}
+    <title>Women in Cloud | Signin</title>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    {% endcompress %}
+    <link rel="stylesheet" href="{% static 'css/addproj.css' %}" class="rel" />
+    <script type="text/javascript" src="../static/js/signin.js"></script>
+{% endblock css %}
+{% block nav %}
+<ul class="flex flex-col p-4 mt-4  rounded-lg bg-gray-50 md:flex-row md:space-x-20 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+  <li>
+    <a href="/admin_index" class="block py-2 pl-3 pr-4 text blue bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-300"
+ aria-current="page">Home</a>
+  </li>
+  <li>
+    <a href="/projects" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Projects</a>
+  </li>
+  <li>
+    <a href="/internships" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Internships</a>
+  </li>
+
+    <li>
+      <a href="/events" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Events</a>
+
+    </li>
+    <li>
+    <a href="/dashboard" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Dashboard</a>
+  </li>
+  <li>
+    <div class="gradient-button">
+      <a
+        id="modal_trigger"
+        onclick="location.href='{% url 'logout' %}'"
+        ><i class="fa fa-sign-in-alt"></i> Logout</a
+      >
+    </div>
+  </li>
+</ul>
+{% endblock nav%}
+{% block content%}
+    <div class="form-panel two">
+        <form action="/addproject/" method="post">
+            {% csrf_token %}
+      <div class="form-header">
+        <h1>Add Fund</h1>
+      </div>
+      <div class="form-content">
+        <form>
+
+              <div class="form-group">
+                <label for="password">Organisation Name</label
+                ><input
+                  type="text"
+                  id="text"
+                  name="orgname"
+                  required="required"
+                  title="Name must have only alphabets"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Amount</label
+                ><input
+                  type="text"
+                  id="text"
+                  name="amount"
+                  required="required"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Date</label
+                ><input
+                  type="date"
+                  id="text"
+                  name="date"
+                  required="required"
+                />
+              </div>
+              <div class="form-group">
+                <label for="password">Funded Project</label
+                ><input
+                  type="text"
+                  id="text"
+                  name="fp"
+                  title="Name must have only alphabets"
+                />
+              </div>
+          <div class="form-group">
+            <label for="username">Funded Internship</label
+            ><input
+              type="text"
+              id="text"
+              name="fi"
+              required="required"
+            />
+          </div>
+          <div class="form-group">
+            <label for="Date">Funded Event</label
+            ><input
+              type="text"
+              id="text"
+              name="fe"
+              required="required"
+            />
+          </div>
+          <div class="form-group">
+            <button type="submit">Add Fund</button>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+  </form>
+</div>
+
+{% endblock content %}

@@ -50,5 +50,9 @@ urlpatterns = [
     path("apply_events/",views.stud_view_event,name="stud_view_event"),  #the stud view events 
     path("applyevent/<int:event_id>/<str:USN>/",views.apply_event,name="apply_event"),  #the stud view events 
     path("archivedeve/",views.archivedeve,name="archivedeve"),  #the stud view events 
+    
+    # ------fund-----
+    path("addfund/",views.fund,name="addfund"),
+    path("addfunds/",views.add_fund,name="addfunds"),
 
 ]

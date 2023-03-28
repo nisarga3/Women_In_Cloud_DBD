@@ -12,7 +12,7 @@
 {% block nav %}
             <ul class="flex flex-col p-4 mt-4  rounded-lg bg-gray-50 md:flex-row md:space-x-20 md:mt-0 md:text-sm md:font-medium md:border-0 md: dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a href="/index" class="block py-2 pl-3 pr-4 text blue bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-300"
+                <a href="/" class="block py-2 pl-3 pr-4 text blue bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-blue-300"
              aria-current="page">Home</a>
               </li>
               <li>
@@ -243,5 +243,106 @@
 </div>
 </div>
 
-
 {% endblock content %}
+
+{% block footer %}
+<footer id="newsletter">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <div class="section-heading">
+          <h4>
+            Join our mailing list to receive the news &amp; latest trends
+          </h4>
+        </div>
+      </div>
+      <div class="col-lg-6 offset-lg-3">
+        <form id="search" action="#" method="GET">
+          <div class="row">
+            <div class="col-lg-6 col-sm-6">
+              <fieldset>
+                <input
+                  type="address"
+                  name="address"
+                  class="email"
+                  placeholder="Email Address..."
+                  autocomplete="on"
+                  required
+                />
+              </fieldset>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+              <fieldset>
+                <button type="submit" class="main-button">
+                  Subscribe Now <i class="fa fa-angle-right"></i>
+                </button>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="footer-widget">
+          <h4>Contact Us</h4>
+          <p>RV College of Engineering - Mysore Road, Bangalore, India</p>
+          <p><a href="#">010-020-0340</a></p>
+          <p><a href="#">https://womenincloud.com/</a></p>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-widget">
+          <h4>About Us</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#services">Mission</a></li>
+            <li><a href="#services">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#feedback">FeedBack</a></li>
+          </ul>
+          <ul>
+            <li><a href="#services">About</a></li>
+            <li><a href="#">Join Us Now</a></li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-widget">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="#">WIC RVCE App</a></li>
+            <li><a href="#">Dev Team</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Normal Apps</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-widget">
+          <h4>Latest Blogs</h4>
+          <div class="logo">
+            <img src="../static/images/logo.png" alt="" />
+          </div>
+          <p >
+
+          <li><a style="color:white" href="https://womenincloud.com/women-in-cloud-announces-top-100-women-tech-founders-list-first-50-b2b-cloud-saas-and-services-founders-are-named/">> Women In Cloud Announces ‘Top 100 Women Tech Founders’ List: First 50 B2B Cloud SAAS and Services Founders are Named</a></li><br/>
+          <li><a style="color:white" href="https://womenincloud.com/wicsxsw-curated-opportunities-for-b2b-founders-professionals/" title="Permalink to WIC@SXSW 2023 : Curated Opportunities for B2B Founders &amp; Professionals">> WIC@SXSW 2023 : Curated Opportunities for B2B Founders &amp; Professionals</a></li>
+
+
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="copyright-text">
+          <p>
+            Made with ❤️ by Nisarga and Sandeep
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock footer %}
