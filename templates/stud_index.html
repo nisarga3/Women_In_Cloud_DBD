@@ -1,4 +1,4 @@
-<!-- templates/stud_index.html -->
+
 
 {% extends "_base.html" %}
 {% load compress %}
@@ -70,8 +70,136 @@
 </ul>
 {% endblock nav%}
 {% block content %}
+<br/>
+<div id="services" class="services section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <div
+          class="section-heading wow fadeInDown"
+          data-wow-duration="1s"
+          data-wow-delay="0.5s"
+        >
+          <h4>Are<em>You Hired?</em></h4>
+          <img src="{% static 'images/heading-line-dec.png' %}" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<div class="table-containerr" style="margin: 80px auto; margin-top: 0px;
+width: 80%; ">
+  <table class="table" style=" width: 100%;border-collapse: collapse;">
+    <!-- Flowbite table code goes here -->
+    
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="flex items-center justify-between pb-4">
+      <div>
 
+        <button id="dropdownRadioButton" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+          INTERNSHIPS
+      </button>
+          <!-- Dropdown menu -->
+          
+      </div>
+      
+  </div>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+              <th scope="col" class="px-6 py-3">
+                  Company name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Description
+            </th>
+              <th scope="col" class="px-6 py-3">
+                  Requirements
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Start Date/End Date
+              </th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
+              <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{stud.on_going_internship.company_name}}
+              </td>
+              <td class="px-6 py-4">
+                {{stud.on_going_internship.role_description}}
+            </td>
+              <td class="px-6 py-4">
+                  {{stud.on_going_internship.requirements}}
+              </td>
+              <td class="px-6 py-4">
+                  {{ stud.on_going_internship.start_date|slice:'0:10' }} - {{ stud.on_going_internship.end_date|slice:'0:10' }}
+              </td>
+              
+          </tr>
+      </tbody>
+  </table>
+</div>
+  </table>
+</div>
+<div class="table-containerr" style="margin: 80px auto; margin-top: 0px;
+width: 80%; ">
+  <table class="table" style=" width: 100%;border-collapse: collapse;">
+    <!-- Flowbite table code goes here -->
+    
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div class="flex items-center justify-between pb-4">
+      <div>
+
+        <button id="dropdownRadioButton" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+          PROJECTS
+      </button>
+          <!-- Dropdown menu -->
+          
+      </div>
+      
+  </div>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+
+              <th scope="col" class="px-6 py-3">
+                  Company name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Description
+            </th>
+              <th scope="col" class="px-6 py-3">
+                  Requirements
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Start Date/End Date
+              </th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+
+              <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{stud.on_going_project.company_name}}
+              </td>
+              <td class="px-6 py-4">
+                {{stud.on_going_project.description}}
+            </td>
+              <td class="px-6 py-4">
+                  {{stud.on_going_project.requirements}}
+              </td>
+              <td class="px-6 py-4">
+                  {{ stud.on_going_project.start_date|slice:'0:10' }} - {{ stud.on_going_project.end_date|slice:'0:10' }}
+              </td>
+              
+          </tr>
+      </tbody>
+  </table>
+</div>
+  </table>
+</div>
 
 {% endblock content %}
 {% block js %}

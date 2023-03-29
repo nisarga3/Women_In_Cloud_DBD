@@ -7,6 +7,11 @@ import pyrebase
 from django.contrib import auth
 from django.contrib import messages
 from django.http import JsonResponse
+import csv
+from io import BytesIO
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
+from openpyxl import Workbook
 
 # Create your views here.
 
@@ -446,13 +451,30 @@ def archivedeve(request):
     return render(request,"events/stud-event.html",{"events":events})
 
 
-# # --DOWNLOAD REPORTS
+# --DOWNLOAD REPORTS
 # def export_csv(request):
 #     response= HttpResponse(content_type='text/csv')
 
 #     response['Content-Disposition'] = 'attachment; filename=Internships' + str(datetime.datetime.now())+ '.csv'
 #     writer = csv.writer(response)
 #     writer.writerow(['COMPANY NAME', 'REQUIREMENTS', 'START DATE/END DATE', 'NUMBER OF OPENINGS'])
+def intdownload_csv(request):
+    # Get the JSON data from the request
+    response = requests.get('https://springbootapi-production-c1e0.up.railway.app/internships')
+    json_data = response.json()
+    # Parse the JSON data
+    data = json.loads(json_data)
+
+    # Create a CSV file using the data
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="Internships.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(data[0].keys())  # Write the header row
+    for row in data:
+        writer.writerow(row.values())
+
+    return response   
 
 def get_company_logo(company_name):
     print(company_name)
@@ -473,18 +495,13 @@ def add_fund(request):
     orgname=request.POST.get('orgname')
     amount=request.POST.get('amount')
     date=request.POST.get('date')
-    fp=request.POST.get('fp')
-    fi=request.POST.get('fi')
-    fe=request.POST.get('fe')
+
 
     try:
         payload = json.dumps({
             "organization_name": orgname,
-            "amount": amount,
+            "amount": str(amount),
             "date": date,
-            "funded_projects": fp,
-            "funded_internships":fi,
-            "funded_events":fe,
         })
         headers = {
             'Content-Type': 'application/json'
@@ -494,3 +511,4 @@ def add_fund(request):
         message="Unable to add fund, Try Again!"
         return render(request,"admin_index.html",{"msg":message})    
     return render(request,"admin_index.html")
+

@@ -39,6 +39,9 @@
 </ul> 
 {% endblock nav%}
 {% block content %}
+</br></br></br>
+<section class="section courses" id="courses" >
+  <div class="container">
 {% for s in studs %}
 <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
   <div class="flex justify-end px-4 pt-4">
@@ -71,6 +74,7 @@
           </button>      </div>
   </div>
 </div>
+
 
 <!-- Main modal -->
 <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
@@ -147,10 +151,10 @@
             </div>
         </div>
     </div>
-</div>
-
+</div>  
     {% endfor %}
 </div>
+</div></section>
 {% endblock content %}
 {% block js %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

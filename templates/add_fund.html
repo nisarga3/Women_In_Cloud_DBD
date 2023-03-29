@@ -45,7 +45,7 @@
 {% endblock nav%}
 {% block content%}
     <div class="form-panel two">
-        <form action="/addproject/" method="post">
+        <form action="/addfunds/" method="post">
             {% csrf_token %}
       <div class="form-header">
         <h1>Add Fund</h1>
@@ -81,33 +81,7 @@
                   required="required"
                 />
               </div>
-              <div class="form-group">
-                <label for="password">Funded Project</label
-                ><input
-                  type="text"
-                  id="text"
-                  name="fp"
-                  title="Name must have only alphabets"
-                />
-              </div>
-          <div class="form-group">
-            <label for="username">Funded Internship</label
-            ><input
-              type="text"
-              id="text"
-              name="fi"
-              required="required"
-            />
-          </div>
-          <div class="form-group">
-            <label for="Date">Funded Event</label
-            ><input
-              type="text"
-              id="text"
-              name="fe"
-              required="required"
-            />
-          </div>
+              
           <div class="form-group">
             <button type="submit">Add Fund</button>
           </div>

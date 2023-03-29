@@ -1,4 +1,4 @@
-<!-- templates/stud_index.html -->
+
 
 {% extends "_base.html" %}
 {% load compress %}
@@ -183,7 +183,7 @@ width: 80%; ">
                     </div>
                 </td> -->
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {{p.company_name}}
+                    {{p.project_id}} {{p.company_name}}
                 </th>
                 <td class="px-6 py-4">
                     {{p.description}}
@@ -198,7 +198,7 @@ width: 80%; ">
                     {{p.opening}}
                 </td>
                 <td class="px-6 py-4">
-                    <a href="/applyproj/{{p.project_id}}" onclick="apply(event)" id="applyyy" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Apply</a>
+                    <a href="/applyproj/" onclick="apply(event,'{{p.project_id}}')" id="applyyy" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Apply</a>
                 </td>
             </tr>
             {% endfor %}
@@ -256,9 +256,10 @@ width: 80%; ">
 //   })
 // }
 
-function apply(event) {
+function apply(event,project_id) {
   event.preventDefault();
   var url = $(applyyy).attr('href');
+  url += project_id;
   console.log(url);
   Swal.fire({
   title: "Please Enter your USN",
