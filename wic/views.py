@@ -9,9 +9,9 @@ from django.contrib import messages
 from django.http import JsonResponse
 import csv
 from io import BytesIO
-from reportlab.pdfgen import canvas
-from django.http import HttpResponse
-from openpyxl import Workbook
+# from reportlab.pdfgen import canvas
+# from django.http import HttpResponse
+# from openpyxl import Workbook
 
 # Create your views here.
 
@@ -458,23 +458,24 @@ def archivedeve(request):
 #     response['Content-Disposition'] = 'attachment; filename=Internships' + str(datetime.datetime.now())+ '.csv'
 #     writer = csv.writer(response)
 #     writer.writerow(['COMPANY NAME', 'REQUIREMENTS', 'START DATE/END DATE', 'NUMBER OF OPENINGS'])
-def intdownload_csv(request):
-    # Get the JSON data from the request
-    response = requests.get('https://springbootapi-production-c1e0.up.railway.app/internships')
-    json_data = response.json()
-    # Parse the JSON data
-    data = json.loads(json_data)
+# def downloadcsv(request):
+#     # Get the JSON data from the request
+#     response = requests.get('https://springbootapi-production-c1e0.up.railway.app/studentsCSV')
+#     json_data = response.json()
+#     # Parse the JSON data
+#     print(json_data)
+#     data = json.loads(json_data)
 
-    # Create a CSV file using the data
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="Internships.csv"'
+#     # Create a CSV file using the data
+#     response = HttpResponse(content_type='text/csv')
+#     response['Content-Disposition'] = 'attachment; filename="Internships.csv"'
 
-    writer = csv.writer(response)
-    writer.writerow(data[0].keys())  # Write the header row
-    for row in data:
-        writer.writerow(row.values())
+#     writer = csv.writer(response)
+#     writer.writerow(data[0].keys())  # Write the header row
+#     for row in data:
+#         writer.writerow(row.values())
 
-    return response   
+#     return response   
 
 def get_company_logo(company_name):
     print(company_name)

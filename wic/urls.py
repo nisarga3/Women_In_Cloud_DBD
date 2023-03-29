@@ -54,7 +54,6 @@ urlpatterns = [
     # ------fund-----
     path("addfund/",views.fund,name="addfund"),
     path("addfunds/",views.add_fund,name="addfunds"),
-    path('int_download_csv/', views.intdownload_csv, name='intdownload_csv'),
 
 
 ]
